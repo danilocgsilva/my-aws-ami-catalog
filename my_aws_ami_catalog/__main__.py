@@ -1,3 +1,7 @@
+from my_aws_ami_catalog.MAAC import MAAC
+
 def main():
-    print("Hello World! Starts here the my_aws_ami_catalog program to change the world!")
+    maac = MAAC()
+    results = maac.fetch()
+    print(results)
 
