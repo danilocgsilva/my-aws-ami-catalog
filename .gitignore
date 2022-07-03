@@ -1,2 +1,4 @@
 my_aws_ami_catalog/__pycache__/
 test/__pycache__/
+build/
+my_aws_ami_catalog.egg-info/
