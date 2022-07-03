@@ -12,6 +12,9 @@ class testDictParameterAssemblyTest(unittest.TestCase):
         self.assertEqual(expected_result, object_result)
 
     def testWantArm(self):
+
+        self.dictParameterAssembly.addFilter("arm64", "architecture")
+
         expected_result = {
             "Filters": [
                 {
@@ -23,13 +26,11 @@ class testDictParameterAssemblyTest(unittest.TestCase):
             ]
         }
 
-        self.dictParameterAssembly.addArchitecture("arm64")
-
         object_result = self.dictParameterAssembly.get()
         self.assertEqual(expected_result, object_result)
 
     def testWantx86(self):
-        self.dictParameterAssembly.addArchitecture("x86")
+        self.dictParameterAssembly.addFilter("x86", "architecture")
 
         expected_result = {
             "Filters": [
@@ -46,7 +47,7 @@ class testDictParameterAssemblyTest(unittest.TestCase):
         self.assertEqual(expected_result, object_result)
 
     def testAddDescription2204(self):
-        self.dictParameterAssembly.addDescription("*22.04*")
+        self.dictParameterAssembly.addFilter("*22.04*", "description")
 
         expected_result = {
             "Filters": [
@@ -63,8 +64,8 @@ class testDictParameterAssemblyTest(unittest.TestCase):
         self.assertEqual(expected_result, object_result)
 
     def testAddDescriptionAndArchiteture(self):
-        self.dictParameterAssembly.addDescription("*ubuntu*")
-        self.dictParameterAssembly.addArchitecture("x86_64")
+        self.dictParameterAssembly.addFilter("*ubuntu*", "description")
+        self.dictParameterAssembly.addFilter("x86_64", "architecture")
     
         expected_result = {
             "Filters": [

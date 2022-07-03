@@ -8,7 +8,7 @@ class MAAC:
     
     def fetch(self, params = {}):
         ec2Client = boto3.client("ec2")
-        self.dataFetched = ec2Client.describe_images(**params)["Imagess"]
+        self.dataFetched = ec2Client.describe_images(**params)["Images"]
 
     def getData(self) -> dict:
         return self.dataFetched
