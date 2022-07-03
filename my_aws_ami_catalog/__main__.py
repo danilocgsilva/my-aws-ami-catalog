@@ -29,3 +29,5 @@ def main():
     maac.fetch(filters_for_maac)
     results = maac.getData()
     print(json.dumps(results, indent = 4))
+    print("---")
+    print("Fetched " + str(len(results)) + " results.")
