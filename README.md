@@ -24,6 +24,8 @@ maac --filters-pairs architecture:arm64,description:*ubuntu*
 ```
 This is an example of utility utilization, in which you add to filter the architecture beign the `arm64` and the ami description that is `*ubuntu*`
 
+You have the option to add `--mongodb` as an option. This way, you may save the fetched data into a localhost mongo server.
+
 * Utility to be used by other python utilities
 
 We got two important objects: `MAAC` and `DictParameterAssembly`. The command line utlity uses both behind the scenes.

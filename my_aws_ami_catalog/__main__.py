@@ -1,6 +1,7 @@
 from typing import Dict
 from my_aws_ami_catalog.MAAC import MAAC
 from my_aws_ami_catalog.DictParameterAssembly import DictParameterAssembly
+from my_aws_ami_catalog.MongoDb import MongoDb
 import argparse
 import json
 
@@ -9,6 +10,12 @@ def main():
     parser.add_argument(
         "--filters-pairs",
         "-p"
+    )
+    parser.add_argument(
+        "--mongodb",
+        "-m",
+        required=False,
+        action="store_true"
     )
 
     args = parser.parse_args()
@@ -28,6 +35,12 @@ def main():
     maac = MAAC()
     maac.fetch(filters_for_maac)
     results = maac.getData()
-    print(json.dumps(results, indent = 4))
-    print("---")
-    print("Fetched " + str(len(results)) + " results.")
+
+    if not args.mongodb:
+        print(json.dumps(results, indent = 4))
+        print("---")
+    else:
+        mongodb = MongoDb()
+        mongodb.save(results)
+
+    print("We got " + str(len(results)) + " instances ami.")
