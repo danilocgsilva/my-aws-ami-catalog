@@ -19,3 +19,10 @@ class testMongodbConnectionString(unittest.TestCase):
         self.mongoConnectionString.setSrv()
         expected_string = "mongodb+srv://127.0.0.1:27017/"
         self.assertEqual(expected_string, self.mongoConnectionString.getString())
+
+    def testAddUserAndPasswordAuthentication(self):
+        self.mongoConnectionString.setUser("root")
+        self.mongoConnectionString.setPassword("example")
+        expected_string = "mongodb://root:example@127.0.0.1:27017/"
+        self.assertEqual(expected_string, self.mongoConnectionString.getString())
+

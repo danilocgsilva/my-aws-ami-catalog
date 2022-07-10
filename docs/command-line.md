@@ -17,3 +17,10 @@ This is an example of utility utilization, in which you add to filter the archit
 ## Saving data fetched directly to mongodb
 
 You have the option to add `--mongodb` as an option. This way, you may save the fetched data into a localhost mongo server.
+
+Your db instance may require credentials to authenticate. In this case, just add the followinf argument:
+
+```
+--mongodb-credentials
+```
+Them you will be prompted to give the user and password from MongoDB instance.
