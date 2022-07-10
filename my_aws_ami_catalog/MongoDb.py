@@ -1,10 +1,13 @@
 from pymongo import MongoClient
+from my_aws_ami_catalog.MongodbConnectionString import MongodbConnectionString
 import pymongo
 
 class MongoDb:
 
     def save(self, dataList: list):
-        CONNECTION_STRING = "mongodb://127.0.0.1:27017/"
+        mongodbConnectionString = MongodbConnectionString()
+        
+        CONNECTION_STRING = mongodbConnectionString.getString()
         client = MongoClient(CONNECTION_STRING)
         database = client["aws"]
         collection = database["amis"]
