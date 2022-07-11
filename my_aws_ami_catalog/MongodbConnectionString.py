@@ -5,6 +5,7 @@ class MongodbConnectionString:
         self.srv = False
         self.user = None
         self.password = None
+        self.port = None
 
     def setAddress(self, address: str):
         self.address = address
@@ -21,8 +22,12 @@ class MongodbConnectionString:
         self.password = password
         return self
 
+    def setPort(self, port: str):
+        self.port = port
+        return self
+
     def getString(self) -> str:
-        base_string = "mongodb{}://{}{}:27017/"
+        base_string = "mongodb{}://{}{}:{}/"
 
         srv_replacement = "+srv" if self.srv else ""
 
@@ -33,4 +38,11 @@ class MongodbConnectionString:
 
         address_replacement = self.address if self.address else "127.0.0.1"
 
-        return base_string.format(srv_replacement, user_password_replacement, address_replacement)
+        port_replacement = self.port if self.port else "27017"
+
+        return base_string.format(
+            srv_replacement, 
+            user_password_replacement, 
+            address_replacement,
+            port_replacement
+        )

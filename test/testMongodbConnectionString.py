@@ -26,3 +26,8 @@ class testMongodbConnectionString(unittest.TestCase):
         expected_string = "mongodb://root:example@127.0.0.1:27017/"
         self.assertEqual(expected_string, self.mongoConnectionString.getString())
 
+    def testSetPort(self):
+        self.mongoConnectionString.setPort(27018)
+        expected_string = "mongodb://127.0.0.1:27018/"
+        self.assertEqual(expected_string, self.mongoConnectionString.getString())
+

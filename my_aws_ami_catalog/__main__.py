@@ -10,7 +10,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--filters-pairs",
-        "-p"
+        "-f"
     )
     parser.add_argument(
         "--mongodb",
@@ -23,6 +23,16 @@ def main():
         "-c",
         required=False,
         action="store_true"
+    )
+    parser.add_argument(
+        "--profile",
+        "-p",
+        required=False
+    )
+    parser.add_argument(
+        "--mongodb-port",
+        "-mp",
+        required=False
     )
 
     args = parser.parse_args()
@@ -40,6 +50,10 @@ def main():
         filters_for_maac = {}
 
     maac = MAAC()
+
+    if args.profile:
+        maac.setProfile(args.profile)
+
     maac.fetch(filters_for_maac)
     results = maac.getData()
 
@@ -48,6 +62,9 @@ def main():
         print("---")
     else:
         mongodb = MongoDb()
+
+        if args.mongodb_port:
+            mongodb.setPort(args.mongodb_port)
 
         if args.mongodb_credentials:
             set_credentials(mongodb)
